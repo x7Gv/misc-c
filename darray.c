@@ -23,7 +23,7 @@ void arr_append(d_arr *arr, void *node)
 {
 	if (arr->size >= arr->capacity) {
 		arr->capacity *= 2;
-		arr->data = realloc(*(arr->data), arr->capacity * arr->node_size);
+		arr->data = realloc(arr->data, arr->capacity * sizeof(arr->data));
 	}
 
 	arr->data[arr->size++] = node; 
