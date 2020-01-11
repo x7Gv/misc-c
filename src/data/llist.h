@@ -3,15 +3,16 @@
 
 #include "stdlib.h"
 
+typedef struct node_t node_t;
+
 /**
  * @brief      Sub structure that contains the data to be linked.
  */
-typedef struct node_t
+struct node_t
 {
 	char *data;
 	node_t *next;
-}
-node_t;
+};
 
 /**
  * Main Link to the list.

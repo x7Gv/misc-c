@@ -31,7 +31,7 @@ void llist_append(llist *list, void *data)
 		last = last->next;
 	}
 
-	llist_insert_after(*(last), *(new));
+	last->next = new;
 
 	return;
 }
@@ -54,7 +54,6 @@ void llist_remove_after(node_t node)
 	node.next = node.next->next;
 
 	free(obsolete.data);
-	free(&obsolete);
 }
 
 void llist_remove_begin(llist *list)
@@ -63,5 +62,4 @@ void llist_remove_begin(llist *list)
 	list->head = list->head->next;
 
 	free(obsolete.data);
-	free(&obsolete);
 }
