@@ -1,4 +1,5 @@
 #include "llist.h"
+#include <stdio.h>
 
 void llist_init(llist *list, size_t member_size)
 {
@@ -8,7 +9,7 @@ void llist_init(llist *list, size_t member_size)
 
 void llist_push(llist *list, void *data)
 {
-	node_t *new = (node_t *) malloc(list->member_size);
+	node_t *new = (node_t *) malloc(sizeof(node_t) + list->member_size);
 	new->data = (char *) data;
 
 	llist_insert_begin(list, *(new));
@@ -16,7 +17,7 @@ void llist_push(llist *list, void *data)
 
 void llist_append(llist *list, void *data)
 {
-	node_t *new = (node_t *) malloc(list->member_size);
+	node_t *new = (node_t *) malloc(sizeof(node_t) + list->member_size);
 	node_t *last = list->head;
 
 	new->data = (char *) data;
