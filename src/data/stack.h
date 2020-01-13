@@ -3,24 +3,41 @@
 
 #include "stdlib.h"
 
-typedef struct stack stack;
+#define STACK_UNDEFINED_LIMIT -1
 
-struct frame
+#define STACK_OPERATION_SUCCESS 0;
+
+#define STACK_EXCEPTION_OVERFLOW -2
+#define STACK_EXCEPTION_UNDERFLOW -3
+
+typedef struct stack stack;
+typedef struct frame_t frame_t;
+
+struct frame_t
 {
 	char *data;
-	struct frame *next;
+	frame_t *next;
 };
 
 struct stack
 {
 	size_t member_size;
-	unsigned size;
-	struct frame *top;
+	int max_size;
+	unsigned int size;
+
+	frame_t *top;
 };
 
-void stack_init(stack *a, size_t member_size);
+/**
+ * @brief      Initialize stack
+ *
+ * @param      a            Stack ref to initialize.
+ * @param[in]  member_size  The size of data in frame.
+ * @param[in]  max_size		Maximum size of the stack until overflow.
+ */
+void stack_init(stack *a, size_t member_size, int max_size);
 
-void stack_push(void *data);
+int stack_push(stack *a, void *data);
 
 void *stack_pop(stack *a);
 
